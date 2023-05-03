@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Facial Recognition</title>
+  <style>
+    img {
+        width: 50%;
+        display: block;
+        margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <img id="video" src="{{ url_for('video') }}">
+      </div>
+    </div>
+    <div>
+      <label for="skipFrames">Skip Frames:</label>
+      <input type="number" id="skipFrames" name="skipFrames" min="1" max="10" value="2" onchange="updateVideo()">
+    </div>
+  </div>
+
+  <script>
+    function updateVideo() {
+      var skipFrames = document.getElementById("skipFrames").value;
+      var video = document.getElementById("video");
+      video.src = "{{ url_for('video') }}?skipFrames=" + skipFrames;
+    }
+  </script>
+</body>
+</html>
